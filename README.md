@@ -24,7 +24,7 @@ El acceso se puede realizar desde Postman o Navegador.
    6. Borrar todos los libros
 
 
-##Archivo application.properties
+## Archivo application.properties
 1. Por seguridad aplicamos las configuraciones:
    server.error.include-message=never
    server.error.include-stacktrace=never
