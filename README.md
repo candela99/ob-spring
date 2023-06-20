@@ -22,3 +22,10 @@ El acceso se puede realizar desde Postman o Navegador.
    4. Actualizar un libro existente
    5. Borrar un libro
    6. Borrar todos los libros
+
+
+##Archivo application.properties
+1. Por seguridad aplicamos las configuraciones:
+   server.error.include-message=never
+   server.error.include-stacktrace=never
+   Esto sirve para no exponer los errores al front, cuando hay un error en el path de una peticion, se devuelve un archivo JSON con el valor 404.
