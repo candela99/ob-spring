@@ -42,6 +42,7 @@ public class BookController {
      /**
      * Buscar solo un libro  en la db segun su ID
       * - Usamos el objeto Optional como envoltorio para no trabajar directamente con el null ya que nos puede traer errores
+      * - Además, usamos ResponseEntity para devolver más información como estado, cabeceras, etc. y no solo el objeto
      **/
     @GetMapping("/api/books/{id}")
     public ResponseEntity<Book> findOneById(@PathVariable Long id) {
@@ -75,12 +76,33 @@ public class BookController {
      */
     @PutMapping("/api/books")
     public ResponseEntity<Book> update(@RequestBody Book book) {
-        if (book.getId() == null) {
+        if (book.getId() == null) { /*Si es null, el método deberia ser CREATE*/
             log.warn("Trying to update a non existent book");
+            return ResponseEntity.badRequest().build(); /*400*/
+        }
+        if(!bookRepository.existsById(book.getId())) {  /*Si el ID no es válido*/
+            log.warn("Trying to update a non existent book");
+            return ResponseEntity.notFound().build();   /*404*/
         }
         Book result = bookRepository.save(book);
         return ResponseEntity.ok(result);
     }
 
     //Borrar un libro en la db
+    @DeleteMapping("/api/books/{id}")
+    public ResponseEntity<Book> delete(@PathVariable Long id) {
+        if(!bookRepository.existsById(id)) {  /*Si el ID no es válido*/
+            log.warn("Trying to delete a non existent book");
+            return ResponseEntity.notFound().build();   /*404*/
+        }
+        bookRepository.deleteById(id);
+        return ResponseEntity.noContent().build(); /*noContent: 204. Todo OK y se ha borrado el contenido*/
+    }
+
+    @DeleteMapping("/api/books")
+    public ResponseEntity<Book> deleteAll() {
+        log.info("REST Request for delete all books"); /*Sirve para segur el flujo de ejecución al debuguear*/
+        bookRepository.deleteAll();
+        return ResponseEntity.noContent().build();
+    }
 }
