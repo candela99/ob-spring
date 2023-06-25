@@ -1,19 +1,23 @@
 package com.example.obrestdatajpa;
 
+import com.example.obrestdatajpa.config.SwaggerConfig;
 import com.example.obrestdatajpa.entities.Book;
 import com.example.obrestdatajpa.repositories.BookRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Import;
 
 import java.time.LocalDate;
 
 @SpringBootApplication
+@Import(SwaggerConfig.class)
 public class ObRestDatajpaApplication {
 
 	public static void main(String[] args) {
 		ApplicationContext context = SpringApplication.run(ObRestDatajpaApplication.class, args);
 		BookRepository repository = context.getBean(BookRepository.class);
+		SwaggerConfig swaggerConfig = context.getBean(SwaggerConfig.class);
 
 		//CRUD, normalmente esto se hace desde un Servicio o Controlador
 		//crear un libro
@@ -25,7 +29,7 @@ public class ObRestDatajpaApplication {
 		System.out.println(repository.findAll());
 		System.out.println("Num libros en db: " + repository.count());
 		//borrar un libro
-
+		System.out.println(swaggerConfig);
 	}
 
 }
