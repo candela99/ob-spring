@@ -16,7 +16,8 @@ import java.util.Collections;
 * detectarlo e inicialiar Swagger.
 * Usamos Swagger para documentar la API REST, de forma dinamica:
 * si se produce un cambio en la API, estos cambios se verán reflejados en la documentación
- * http://localhost:8080/swagger-ui/
+ * HTML: http://localhost:8080/swagger-ui/
+ * JSON: http://localhost:8080/v2/api-docs
 * */
 @Configuration
 public class SwaggerConfig {

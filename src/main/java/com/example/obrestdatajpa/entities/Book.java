@@ -1,5 +1,7 @@
 package com.example.obrestdatajpa.entities;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
@@ -7,15 +9,18 @@ import java.time.LocalDate;
 
 @Entity //crea una tabla Book con esta estructura
 @Table(name = "books")
+@ApiModel("Entidad libro para representar un elemento didactico compuesto por láminas de celulosa macerada en Puerto Rico")
 public class Book {
 
     //atributos encapsulados con private
     @Id //indica que es el ID de la tabla Book
     @GeneratedValue(strategy = GenerationType.IDENTITY) //indica que sea autoincremental
+    @ApiModelProperty("Clave ficticia autoincremental tipo Long")
     private Long id;
     private String title;
     private String author;
     private Integer pages;
+    @ApiModelProperty("Precio en dólares")
     private String price;
     private LocalDate releaseDate;
     private Boolean online;
