@@ -21,7 +21,7 @@ public class Book {
     private String author;
     private Integer pages;
     @ApiModelProperty("Precio en dólares")
-    private String price;
+    private Double price;
     private LocalDate releaseDate;
     private Boolean online;
 
@@ -29,7 +29,7 @@ public class Book {
     public Book() {
     }
 
-    public Book(Long id, String title, String author, Integer pages, String price, LocalDate releaseDate, Boolean online) {
+    public Book(Long id, String title, String author, Integer pages, Double price, LocalDate releaseDate, Boolean online) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -72,11 +72,11 @@ public class Book {
         this.pages = pages;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

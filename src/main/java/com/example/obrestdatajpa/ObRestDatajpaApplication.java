@@ -17,7 +17,7 @@ public class ObRestDatajpaApplication {
 
 		//CRUD, normalmente esto se hace desde un Servicio o Controlador
 		//crear un libro
-		Book book = new Book(null, "El prisionero de Azkaban", "Fran", 450, "100 usd", LocalDate.of(2012, 3, 12), true);
+		Book book = new Book(null, "El prisionero de Azkaban", "Fran", 450, 100.00, LocalDate.of(2012, 3, 12), true);
 		//almacenar un libro
 		System.out.println("Num libros en db: " + repository.count());
 		repository.save(book);
